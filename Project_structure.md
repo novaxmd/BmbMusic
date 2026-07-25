@@ -220,7 +220,7 @@ lib/
 │
 ├── storage.ts                # localStorage management (1 278 lines)
 │                             #   50+ typed getter/setter functions
-│                             #   Namespaces: lyrica_*, musicana_*, mz_ai_*
+│                             #   Namespaces: lyrica_*, bmbtech_*, mz_ai_*
 │
 ├── toplay-client.ts          # Community ToPlay API wrapper
 ├── toplay-sync.ts            # ToPlay sync logic
@@ -272,16 +272,16 @@ public/
 | `lyrica_cached_songs` | localStorage | Cached audio URLs |
 | `lyrica_downloaded_songs` | localStorage | Locally downloaded songs |
 | `lyrica_playlists` | localStorage | User-created playlists |
-| `musicana_preferences` | localStorage | Theme, language, Groq key, crossfade, etc. |
-| `musicana_listen_stats` | localStorage | Daily / weekly listening time |
-| `musicana_song_history` | localStorage | Full play history |
-| `musicana_reactions` | localStorage | Per-song emoji reactions |
-| `musicana_fav_moments` | localStorage | Saved timestamps ("favourite moments") |
-| `musicana_party_username` | localStorage | Display name for party mode |
-| `musicana_guest_id` | localStorage | Random guest ID for party mode |
-| `musicana_collab_refs` | localStorage | Collaboration session references |
-| `musicana_badge_events` | localStorage | Badge event log |
-| `musicana_badge_earned` | localStorage | Earned badges |
+| `bmbtech_preferences` | localStorage | Theme, language, Groq key, crossfade, etc. |
+| `bmbtech_listen_stats` | localStorage | Daily / weekly listening time |
+| `bmbtech_song_history` | localStorage | Full play history |
+| `bmbtech_reactions` | localStorage | Per-song emoji reactions |
+| `bmbtech_fav_moments` | localStorage | Saved timestamps ("favourite moments") |
+| `bmbtech_party_username` | localStorage | Display name for party mode |
+| `bmbtech_guest_id` | localStorage | Random guest ID for party mode |
+| `bmbtech_collab_refs` | localStorage | Collaboration session references |
+| `bmbtech_badge_events` | localStorage | Badge event log |
+| `bmbtech_badge_earned` | localStorage | Earned badges |
 | `mz_ai_enabled` | localStorage | AI personalisation toggle |
 | `mz_ai_v1` | localStorage | AI taste profile (HMAC-signed JSON) |
 | `BmbSong_party_host_<id>` | localStorage | Host secret for a party session |

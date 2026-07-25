@@ -123,7 +123,7 @@ When `remainingTime ≤ crossfadeSecs`, a 200 ms tick loop ramps `ytPlayer.setVo
 | Prefix | Contents |
 |---|---|
 | `lyrica_*` | Songs: recently played, liked, cached, downloaded, playlists |
-| `musicana_*` | Preferences, stats, history, reactions, moments, party IDs, badges |
+| `bmbtech_*` | Preferences, stats, history, reactions, moments, party IDs, badges |
 | `mz_ai_*` | AI toggle flag, signed taste profile |
 | `BmbSong_uid` | Anonymous device UUID |
 | `BmbSong_party_host_<id>` | Party host secret (never sent to server) |
@@ -133,7 +133,7 @@ When `remainingTime ≤ crossfadeSecs`, a 200 ms tick loop ramps `ytPlayer.setVo
 Follow the existing pattern:
 
 ```typescript
-const KEY = "musicana_my_feature"
+const KEY = "bmbtech_my_feature"
 
 export function getMyFeatureData(): MyType {
   if (typeof window === "undefined") return defaultValue
@@ -395,7 +395,7 @@ Modes:
 - **`transliterate`** — phonetic romanisation (e.g. Hindi → `"mera dil"`, Korean → `"saranghae"`)
 - **`translate`** — full translation to a target language
 
-The user's Groq API key is read from `musicana_preferences.groqApiKey` (localStorage) and forwarded in the `Authorization` header by the route. The server's `GROQ_API_URL` env var points to the Groq API base URL.
+The user's Groq API key is read from `bmbtech_preferences.groqApiKey` (localStorage) and forwarded in the `Authorization` header by the route. The server's `GROQ_API_URL` env var points to the Groq API base URL.
 
 ---
 

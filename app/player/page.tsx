@@ -581,7 +581,7 @@ useEffect(() => { if (songId) setLiked(isLiked(songId)) }, [songId])
 
   // AI transform cache helpers — keyed by songId+mode+lang stored in localStorage
   const getAiCacheKey = (songId: string, mode: string, lang: string) =>
-    `musicana_ai_${songId}_${mode}_${lang.replace(/[^a-zA-Z]/g, "")}`
+    `bmbtech_ai_${songId}_${mode}_${lang.replace(/[^a-zA-Z]/g, "")}`
 
   const getAiCache = (key: string): string[] | null => {
     try {

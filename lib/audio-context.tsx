@@ -401,7 +401,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     try { p.setVolume(volume) } catch {}
     // Badge: track max-volume sessions
     if (volume >= 100 && typeof window !== "undefined") {
-      (window as any).__musicana_vol_max = true
+      (window as any).__bmbtech_vol_max = true
     }
   }, [volume])
 
@@ -542,9 +542,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
               // Badge: track song completion for no-skip streak
               recordBadgeEvent("song_complete")
               // Volume max badge: check if at max
-              if (typeof window !== "undefined" && (window as any).__musicana_vol_max) {
+              if (typeof window !== "undefined" && (window as any).__bmbtech_vol_max) {
                 recordBadgeEvent("volume_max")
-                ;(window as any).__musicana_vol_max = false
+                ;(window as any).__bmbtech_vol_max = false
               }
               // Restore volume for next song
               if (ytPlayerRef.current && typeof ytPlayerRef.current.setVolume === "function") {
@@ -688,8 +688,8 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       const nowH = new Date().getHours()
       recordBadgeEvent("session_start")
       if ((song as any).genre) recordBadgeEvent("genre_play", (song as any).genre)
-      if (typeof window !== "undefined" && (window as any).__musicana_noskip_count === undefined) {
-        (window as any).__musicana_noskip_count = 0
+      if (typeof window !== "undefined" && (window as any).__bmbtech_noskip_count === undefined) {
+        (window as any).__bmbtech_noskip_count = 0
       }
       const videoId = song.videoId || song.id
       await loadYTApi()
