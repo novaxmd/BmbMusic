@@ -1,4 +1,4 @@
-# Musicanaz — Technical Reference for AI Assistants
+# BmbMusic — Technical Reference for AI Assistants
 
 > This document is written for AI coding assistants (Copilot, Cursor, Claude, etc.).  
 > It explains the architecture, data flow, conventions, and key invariants of the codebase so that
@@ -125,8 +125,8 @@ When `remainingTime ≤ crossfadeSecs`, a 200 ms tick loop ramps `ytPlayer.setVo
 | `lyrica_*` | Songs: recently played, liked, cached, downloaded, playlists |
 | `musicana_*` | Preferences, stats, history, reactions, moments, party IDs, badges |
 | `mz_ai_*` | AI toggle flag, signed taste profile |
-| `musicanaz_uid` | Anonymous device UUID |
-| `musicanaz_party_host_<id>` | Party host secret (never sent to server) |
+| `BmbMusic_uid` | Anonymous device UUID |
+| `BmbMusic_party_host_<id>` | Party host secret (never sent to server) |
 
 ### Adding New Persistent Data
 
@@ -241,7 +241,7 @@ User plays song
 
 ```typescript
 {
-  _sig: string,           // HMAC with APP_SIG = "musicanaz_2025"
+  _sig: string,           // HMAC with APP_SIG = "BmbMusic_2025"
   _version: 1,
   user_id: string,
   songs: Record<songId, {
@@ -293,7 +293,7 @@ lib/party-rtc.ts (PartyRTC class)
 
 ### 8.2 Host vs Guest
 
-- **Host** (`app/party/[id]/host/page.tsx`): Controls playback. `partyHostId` is stored in `localStorage` key `musicanaz_party_host_<partyId>` and **never** sent over the network or exposed in `AudioContextType`.
+- **Host** (`app/party/[id]/host/page.tsx`): Controls playback. `partyHostId` is stored in `localStorage` key `BmbMusic_party_host_<partyId>` and **never** sent over the network or exposed in `AudioContextType`.
 - **Guest** (`app/party/[id]/page.tsx`): Polls external server every 2 s. Can add songs, vote, chat, react.
 
 ### 8.3 Queue Sorting

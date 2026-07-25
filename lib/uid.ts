@@ -1,4 +1,4 @@
-const UID_KEY = "musicanaz_uid"
+const UID_KEY = "BmbMusic_uid"
 
 export function getOrCreateUID(): string {
   if (typeof window === "undefined") return ""

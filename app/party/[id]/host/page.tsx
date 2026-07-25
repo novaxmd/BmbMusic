@@ -27,7 +27,7 @@ interface Guest { id: string; name: string; joinedAt: number }
 
 function getHostId(partyId: string): string | null {
   if (typeof window === "undefined") return null
-  try { return localStorage.getItem(`musicanaz_party_host_${partyId}`) } catch { return null }
+  try { return localStorage.getItem(`BmbMusic_party_host_${partyId}`) } catch { return null }
 }
 
 function fmtTime(ms: number) {
@@ -254,7 +254,7 @@ export default function HostDashboard() {
     try {
       await fetch(`${PARTY_SERVER}/party/${partyId}?hostId=${hostId}`, { method: "DELETE" })
       if (typeof window !== "undefined") {
-        try { localStorage.removeItem(`musicanaz_party_host_${partyId}`) } catch {}
+        try { localStorage.removeItem(`BmbMusic_party_host_${partyId}`) } catch {}
       }
     } catch {}
     router.push("/player")

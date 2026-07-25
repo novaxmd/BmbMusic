@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Musicanaz Downloader — Node.js
+ * BmbMusic Downloader — Node.js
  * ================================
- * Implements the MUSIVA v7 download API so Musicanaz can download songs
+ * Implements the MUSIVA v7 download API so BmbMusic can download songs
  * through your own machine instead of the remote server.
  *
  * ENDPOINTS
@@ -24,7 +24,7 @@
  *    Termux:   pkg install yt-dlp
  *
  * 2. Run this server:
- *    node musicanaz-downloader.js
+ *    node BmbMusic-downloader.js
  *
  * 3. Expose publicly (pick one):
  *    Cloudflare Tunnel (free, recommended):
@@ -34,7 +34,7 @@
  *    Or use your machine's local IP for LAN use:
  *      http://192.168.x.x:7891
  *
- * 4. In Musicanaz → Settings → Download Server, paste the public URL
+ * 4. In BmbMusic → Settings → Download Server, paste the public URL
  *    and tap "Test & Save". OR set the env var:
  *      DOWNLOAD_SERVER_URL=https://your-tunnel-url.trycloudflare.com
  *
@@ -166,7 +166,7 @@ function embedMetadata(filePath, title, artist, album, thumbnailUrl, ext) {
           "-metadata", `title=${title || ""}`,
           "-metadata", `artist=${artist || ""}`,
           "-metadata", `album=${album || title || ""}`,
-          "-metadata", `comment=Musicanaz`,
+          "-metadata", `comment=BmbMusic`,
         )
 
         if (ext === "mp3") {
@@ -217,7 +217,7 @@ function embedMetadata(filePath, title, artist, album, thumbnailUrl, ext) {
         const protocol = thumbnailUrl.startsWith("https") ? https : http
         const opts     = {
           headers: {
-            "User-Agent": "Mozilla/5.0 (compatible; Musicanaz/1.0)",
+            "User-Agent": "Mozilla/5.0 (compatible; BmbMusic/1.0)",
             "Referer":    "https://www.youtube.com/",
           },
         }
@@ -242,7 +242,7 @@ function embedMetadata(filePath, title, artist, album, thumbnailUrl, ext) {
 function startDownload(id, videoId, title, artist, album, thumbnailUrl) {
   const ytUrl   = `https://www.youtube.com/watch?v=${videoId}`
   const tmpDir  = os.tmpdir()
-  const outBase = path.join(tmpDir, `musicanaz_${id}`)
+  const outBase = path.join(tmpDir, `BmbMusic_${id}`)
 
   sessions.set(id, {
     status:    "fetching_meta",
@@ -317,7 +317,7 @@ function startDownload(id, videoId, title, artist, album, thumbnailUrl) {
     try {
       const files = fs.readdirSync(tmpDir)
       for (const f of files) {
-        if (f.startsWith(`musicanaz_${id}.`)) {
+        if (f.startsWith(`BmbMusic_${id}.`)) {
           found = path.join(tmpDir, f)
           ext   = path.extname(f).slice(1)
           break
@@ -357,7 +357,7 @@ function handleHealth(req, res) {
     ok:       true,
     ytdlp:    ytdlpOk,
     version:  ytdlpVersion,
-    server:   "Musicanaz Downloader (Node.js)",
+    server:   "BmbMusic Downloader (Node.js)",
     sessions: sessions.size,
   }))
 }
@@ -473,13 +473,13 @@ checkYtdlp().then(ok => {
   }
 
   server.listen(PORT, "0.0.0.0", () => {
-    console.log(`\n🎵  Musicanaz Downloader (Node.js)`)
+    console.log(`\n🎵  BmbMusic Downloader (Node.js)`)
     console.log(`    Listening on  http://0.0.0.0:${PORT}`)
     console.log(`    Health check: http://localhost:${PORT}/health (or /download/health)\n`)
     console.log(`    To expose publicly:`)
     console.log(`      Cloudflare Tunnel:  cloudflared tunnel --url http://localhost:${PORT}`)
     console.log(`      ngrok:              ngrok http ${PORT}`)
-    console.log(`\n    Then go to Musicanaz → Settings → Download Server`)
+    console.log(`\n    Then go to BmbMusic → Settings → Download Server`)
     console.log(`    and paste the public URL.\n`)
   })
 })

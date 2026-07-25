@@ -742,7 +742,7 @@ function PlayerContent() {
     const ar   = currentSong?.artist || artist
     if (navigator.share) {
       try {
-        await navigator.share({ title: `${t} – ${ar}`, text: `Listen to ${t} by ${ar} on Musicanaz`, url })
+        await navigator.share({ title: `${t} – ${ar}`, text: `Listen to ${t} by ${ar} on BmbMusic`, url })
       } catch {}
     } else {
       copyShareUrl()
@@ -1647,7 +1647,7 @@ function PlayerContent() {
                 <div className="flex items-center gap-2 p-2.5 rounded-xl bg-muted/20 border border-border/20">
                   <Link className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
                   <p className="text-xs text-muted-foreground truncate flex-1 font-mono select-all">
-                    {typeof window !== "undefined" ? buildShareUrl().replace(window.location.origin, "musicanaz.vercel.app") : ""}
+                    {typeof window !== "undefined" ? buildShareUrl().replace(window.location.origin, "BmbMusic.vercel.app") : ""}
                   </p>
                 </div>
               </div>
@@ -1938,7 +1938,7 @@ function PlayerContent() {
                   <div className="flex items-center gap-2.5 p-3 rounded-xl bg-muted/30 border border-border/20">
                     <Link className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                     <p className="text-xs text-muted-foreground truncate flex-1 font-mono select-all">
-                      {typeof window !== "undefined" ? buildShareUrl().replace(window.location.origin, "musicanaz.vercel.app") : ""}
+                      {typeof window !== "undefined" ? buildShareUrl().replace(window.location.origin, "BmbMusic.vercel.app") : ""}
                     </p>
                   </div>
 

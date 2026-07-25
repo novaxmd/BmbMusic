@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Musicanaz Downloader — Python
+BmbMusic Downloader — Python
 ================================
-Implements the MUSIVA v7 download API so Musicanaz can download songs
+Implements the MUSIVA v7 download API so BmbMusic can download songs
 through your own machine instead of the remote server.
 
 ENDPOINTS
@@ -26,7 +26,7 @@ SETUP
    Termux:   pkg install yt-dlp
 
 2. Run this server:
-   python3 musicanaz-downloader.py
+   python3 BmbMusic-downloader.py
 
 3. Expose publicly (pick one):
    Cloudflare Tunnel (free):
@@ -36,7 +36,7 @@ SETUP
    LAN use (same Wi-Fi):
      http://192.168.x.x:7891
 
-4. In Musicanaz → Settings → Download Server, paste the public URL
+4. In BmbMusic → Settings → Download Server, paste the public URL
    and tap "Test & Save". OR set the env var on your Vercel project:
      DOWNLOAD_SERVER_URL=https://your-tunnel-url.trycloudflare.com
 
@@ -88,7 +88,7 @@ logging.basicConfig(
     format="%(asctime)s  %(levelname)-7s  %(message)s",
     datefmt="%H:%M:%S",
 )
-log = logging.getLogger("musicanaz-dl")
+log = logging.getLogger("BmbMusic-dl")
 
 # ── Session store ──────────────────────────────────────────────────────────────
 
@@ -166,7 +166,7 @@ def _embed_metadata(filepath: str, title: str, artist: str, album: str, thumbnai
             req = urllib.request.Request(
                 thumbnail_url,
                 headers={
-                    "User-Agent": "Mozilla/5.0 (compatible; Musicanaz/1.0)",
+                    "User-Agent": "Mozilla/5.0 (compatible; BmbMusic/1.0)",
                     "Referer":    "https://www.youtube.com/",
                 },
             )
@@ -191,7 +191,7 @@ def _embed_metadata(filepath: str, title: str, artist: str, album: str, thumbnai
         "-metadata", f"title={title or ''}",
         "-metadata", f"artist={artist or ''}",
         "-metadata", f"album={album or title or ''}",
-        "-metadata", f"comment=Musicanaz",
+        "-metadata", f"comment=BmbMusic",
     ]
 
     if ext == "mp3":
@@ -246,7 +246,7 @@ def _embed_metadata(filepath: str, title: str, artist: str, album: str, thumbnai
 def _run_download(uid: str, video_id: str, title: str, artist: str, album: str = "", thumbnail_url: str = "") -> None:
     yt_url  = f"https://www.youtube.com/watch?v={video_id}"
     tmp_dir = tempfile.gettempdir()
-    out_tpl = os.path.join(tmp_dir, f"musicanaz_{uid}.%(ext)s")
+    out_tpl = os.path.join(tmp_dir, f"BmbMusic_{uid}.%(ext)s")
 
     with _sessions_lock:
         s = _sessions.get(uid)
@@ -297,7 +297,7 @@ def _run_download(uid: str, video_id: str, title: str, artist: str, album: str =
         # Find the output file
         found = None
         for f in Path(tmp_dir).iterdir():
-            if f.name.startswith(f"musicanaz_{uid}."):
+            if f.name.startswith(f"BmbMusic_{uid}."):
                 found = f
                 break
 
@@ -431,7 +431,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
             "ok":       True,
             "ytdlp":    _ytdlp_ok,
             "version":  _ytdlp_version,
-            "server":   "Musicanaz Downloader (Python)",
+            "server":   "BmbMusic Downloader (Python)",
             "sessions": active,
         })
 
@@ -552,13 +552,13 @@ def main():
         log.warning("  OR set YTDLP_PATH env var to the full binary path.")
 
     server = ThreadedServer((HOST, PORT), Handler)
-    print(f"\n🎵  Musicanaz Downloader (Python)")
+    print(f"\n🎵  BmbMusic Downloader (Python)")
     print(f"    Listening on  http://{HOST}:{PORT}")
     print(f"    Health check: http://localhost:{PORT}/health  (alias: /download/health)\n")
     print(f"    To expose publicly:")
     print(f"      Cloudflare Tunnel:  cloudflared tunnel --url http://localhost:{PORT}")
     print(f"      ngrok:              ngrok http {PORT}\n")
-    print(f"    Then go to Musicanaz → Settings → Download Server")
+    print(f"    Then go to BmbMusic → Settings → Download Server")
     print(f"    and paste the public URL.\n")
 
     try:

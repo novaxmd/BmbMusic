@@ -4,7 +4,7 @@ import { getOrCreateUID } from "./uid"
 import { submitTopSongs, submitTopArtists } from "./toplay-client"
 import type { TopSongSubmission, TopArtistSubmission } from "./toplay-types"
 
-const LAST_SYNC_KEY = "musicanaz_last_toplay_sync"
+const LAST_SYNC_KEY = "BmbMusic_last_toplay_sync"
 const SYNC_INTERVAL_MS = 60 * 60 * 1000 // 1 hour
 
 function shouldSync(): boolean {
@@ -40,7 +40,7 @@ function songToTopSongSubmission(song: Song, playCount: number): TopSongSubmissi
 const LIKED_SONG_WEIGHT = 2
 
 function deriveTopArtists(songs: Song[]): TopArtistSubmission[] {
-  // Use the artist name as a canonical key; songs from Musicanaz don't carry
+  // Use the artist name as a canonical key; songs from BmbMusic don't carry
   // a separate artistId, so we normalise the name to a stable slug. This is
   // best-effort — different name spellings for the same artist will appear as
   // separate entries, but it avoids cross-artist collisions for the common case.

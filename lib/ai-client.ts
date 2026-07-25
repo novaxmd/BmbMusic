@@ -1,5 +1,5 @@
 /**
- * Musicanaz AI client  v2  (lib/ai-client.ts)
+ * BmbMusic AI client  v2  (lib/ai-client.ts)
  * Raw play data stays on device. Only summaries go to the server.
  */
 import type { Song } from "./types"

@@ -75,7 +75,7 @@ function ReplyBlock({ reply, own }: { reply: ReplyRef; own: boolean }) {
 // ── Helpers ─────────────────────────────────────────────────────────────────
 function getHostSecretId(partyId: string): string | null {
   if (typeof window === "undefined") return null
-  try { return localStorage.getItem(`musicanaz_party_host_${partyId}`) || null } catch { return null }
+  try { return localStorage.getItem(`BmbMusic_party_host_${partyId}`) || null } catch { return null }
 }
 
 export default function PartyGuestPage() {

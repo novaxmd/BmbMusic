@@ -1,4 +1,4 @@
-# Musicanaz
+# BmbMusic
 
 A full-stack music streaming Progressive Web App (PWA) built with **Next.js 16**, **React 19**, and **TypeScript**.  
 Stream music, discover new tracks, manage playlists, and listen together with friends — all without creating an account.
@@ -34,8 +34,8 @@ Stream music, discover new tracks, manage playlists, and listen together with fr
 
 ---
 ## Before you start
-- Access the hosted version on https://musicanaz.vercel.app/
-- You can use any browser to access `Musicanaz` 
+- Access the hosted version on https://BmbMusic.vercel.app/
+- You can use any browser to access `BmbMusic` 
   
 ## Getting Started
 
@@ -47,8 +47,8 @@ Stream music, discover new tracks, manage playlists, and listen together with fr
 ### 1 — Clone
 
 ```bash
-git clone https://github.com/Wilooper/Musicanaz.git
-cd Musicanaz
+git clone https://github.com/Wilooper/BmbMusic.git
+cd BmbMusic
 ```
 
 ### 2 — Install Dependencies

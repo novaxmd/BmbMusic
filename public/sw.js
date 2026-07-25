@@ -1,8 +1,8 @@
-// Musicanaz Service Worker — v2
+// BmbMusic Service Worker — v2
 // Handles caching for offline shell + static assets.
 // Does NOT cache music streams (YouTube doesn't allow it).
 
-const CACHE_NAME = "musicanaz-v2"
+const CACHE_NAME = "BmbMusic-v2"
 const SHELL_URLS = [
   "/",
   "/library",

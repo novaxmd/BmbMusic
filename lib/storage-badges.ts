@@ -1,5 +1,5 @@
 /**
- * Musicanaz Badge & XP System  (lib/storage-badges.ts)
+ * BmbMusic Badge & XP System  (lib/storage-badges.ts)
  * Extracted from storage.ts to keep it focused.
  * Uses SharedStore for all badge data.
  */
@@ -102,7 +102,7 @@ export const ALL_BADGES: Badge[] = [
   b("playlist_10","Playlist Architect","Create 10 playlists","📋","uncommon","behavior"),
   b("heatmap_25","Heatmap Hero","Active 25 days in one month","🗓️","uncommon","behavior"),
   b("silent_week","Silent Week","Return after 7 days inactive","🔔","epic","behavior"),
-  b("royalty","Musicanaz Royalty","Unlock 25 total badges","👑","rare","behavior"),
+  b("royalty","BmbMusic Royalty","Unlock 25 total badges","👑","rare","behavior"),
 ]
 
 // ── Streak helpers ────────────────────────────────────────────────────────────

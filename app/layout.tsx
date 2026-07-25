@@ -20,11 +20,11 @@ import Script from "next/script"
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://musicanaz.vercel.app"
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://BmbMusic.vercel.app"
 const LOGO_URL    = "https://raw.githubusercontent.com/wilooper/Asset/main/logo.png"
-const SITE_NAME   = "Musicanaz"
+const SITE_NAME   = "BmbMusic"
 const DESCRIPTION =
-  "Musicanaz — stream millions of songs free with real-time synced lyrics, " +
+  "BmbMusic — stream millions of songs free with real-time synced lyrics, " +
   "discover trending charts from 15+ countries, explore moods & genres, " +
   "save playlists to your library, and listen to podcasts — all in one beautiful PWA."
 
@@ -76,8 +76,8 @@ export const metadata: Metadata = {
   /* ── Twitter / X card ───────────────────────────────────── */
   twitter: {
     card:        "summary_large_image",
-    site:        "@musicanaz_app",
-    creator:     "@musicanaz_app",
+    site:        "@BmbMusic_app",
+    creator:     "@BmbMusic_app",
     title:       `${SITE_NAME} — Free Music Streaming with Synced Lyrics`,
     description: DESCRIPTION,
     images:      [LOGO_URL],

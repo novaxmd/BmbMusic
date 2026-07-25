@@ -1,4 +1,4 @@
-# Musicanaz — Project Structure
+# BmbMusic — Project Structure
 
 > Complete annotated directory and file tree.  
 > All paths are relative to the repository root.
@@ -8,7 +8,7 @@
 ## Root
 
 ```
-Musicanaz/
+BmbMusic/
 ├── .env.example              # Environment variable template (copy → .env.local)
 ├── .gitignore
 ├── components.json           # shadcn/ui component registry config
@@ -231,7 +231,7 @@ lib/
 │
 ├── uid.ts                    # Anonymous user identity (17 lines)
 │                             #   getOrCreateUID() — crypto.randomUUID()
-│                             #   Storage key: musicanaz_uid
+│                             #   Storage key: BmbMusic_uid
 │
 ├── use-toplay-sync.ts        # React hook for ToPlay sync
 └── utils.ts                  # Utility functions (7 lines)
@@ -266,7 +266,7 @@ public/
 
 | Key | Location | Contents |
 |---|---|---|
-| `musicanaz_uid` | localStorage | Anonymous user UUID |
+| `BmbMusic_uid` | localStorage | Anonymous user UUID |
 | `lyrica_recently_played` | localStorage | Recently played songs |
 | `lyrica_liked_songs` | localStorage | Liked / favourited songs |
 | `lyrica_cached_songs` | localStorage | Cached audio URLs |
@@ -284,4 +284,4 @@ public/
 | `musicana_badge_earned` | localStorage | Earned badges |
 | `mz_ai_enabled` | localStorage | AI personalisation toggle |
 | `mz_ai_v1` | localStorage | AI taste profile (HMAC-signed JSON) |
-| `musicanaz_party_host_<id>` | localStorage | Host secret for a party session |
+| `BmbMusic_party_host_<id>` | localStorage | Host secret for a party session |

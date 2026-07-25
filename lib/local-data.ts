@@ -1,11 +1,11 @@
 /**
- * Musicanaz local data system  (lib/local-data.ts)
+ * BmbMusic local data system  (lib/local-data.ts)
  * All listening history stays on-device in localStorage.
  * The blob is signed with APP_SIG so tampering can be detected.
  * The AI API only receives a computed summary — never the raw song list.
  */
 
-export const APP_SIG      = "musicanaz_2025"
+export const APP_SIG      = "BmbMusic_2025"
 export const DATA_KEY     = "mz_ai_v1"
 export const DATA_VERSION = 1
 
