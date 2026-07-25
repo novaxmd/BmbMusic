@@ -334,12 +334,12 @@ export default function ShareCardGenerator({
         ctx.font      = `bold 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`
         ctx.fillStyle = "#a78bfa"
         ctx.textBaseline = "middle"
-        ctx.fillText("Musicanaz", 48 + 50, brandY + 14)
+        ctx.fillText("BmbSong", 48 + 50, brandY + 14)
 
         ctx.font      = `400 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`
         ctx.fillStyle = "rgba(255,255,255,0.25)"
         ctx.textAlign = "right"
-        ctx.fillText("musicanaz.vercel.app", W - 48, brandY + 14)
+        ctx.fillText("BmbSong.vercel.app", W - 48, brandY + 14)
 
         setRendered(true)
         return
@@ -445,7 +445,7 @@ export default function ShareCardGenerator({
       ctx.font = `bold 20px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`
       ctx.fillStyle = cardStyle === "light" ? "#6366f1" : "#a78bfa"
       ctx.textBaseline = "middle"
-      ctx.fillText("Musicanaz", infoX + 52, brandY + 16)
+      ctx.fillText("BmbSong", infoX + 52, brandY + 16)
 
       setRendered(true)
     } catch (e) {
@@ -466,13 +466,13 @@ export default function ShareCardGenerator({
     try {
       canvas.toBlob(async (blob) => {
         if (!blob) return
-        const file = new File([blob], "musicanaz-share.png", { type: "image/png" })
+        const file = new File([blob], "BmbSong-share.png", { type: "image/png" })
         if (navigator.canShare?.({ files: [file] })) {
           await navigator.share({ files: [file], title, text: `${title} — ${artist}` })
         } else {
           const url = URL.createObjectURL(blob)
           const a = document.createElement("a")
-          a.href = url; a.download = "musicanaz-share.png"; a.click()
+          a.href = url; a.download = "BmbSong-share.png"; a.click()
           URL.revokeObjectURL(url)
         }
       }, "image/png")

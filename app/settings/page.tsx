@@ -113,7 +113,7 @@ export default function SettingsPage() {
 
   // Load download server URL from localStorage
   useEffect(() => {
-    const stored = typeof window !== "undefined" ? localStorage.getItem("musicanaz_dl_server") || "" : ""
+    const stored = typeof window !== "undefined" ? localStorage.getItem("BmbSong_dl_server") || "" : ""
     setDlServer(stored)
   }, [])
 
@@ -936,10 +936,10 @@ export default function SettingsPage() {
             <div className="flex items-center justify-center gap-2 mb-2">
               <ImageWithFallback
                 src="https://raw.githubusercontent.com/wilooper/Asset/main/logo.png"
-                alt="Musicanaz"
+                alt="BmbSong"
                 className="w-10 h-10 rounded-xl object-contain"
               />
-              <h3 className="text-xl font-bold tracking-tight">Musicanaz</h3>
+              <h3 className="text-xl font-bold tracking-tight">BmbSong</h3>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">
               A beautifully crafted music streaming experience — search, stream, and discover music without limits.
@@ -1014,7 +1014,7 @@ export default function SettingsPage() {
           {/* Misc */}
           <div className="rounded-2xl bg-card/40 border border-border/30 divide-y divide-border/20 overflow-hidden">
             {[
-              ["App",          "Musicanaz"],
+              ["App",          "BmbSong"],
               ["Version",      "1.0.0"],
               ["Open Source",  "No authentication required"],
               ["Data source",  "YouTube Music (unofficial)"],
@@ -1028,7 +1028,7 @@ export default function SettingsPage() {
           </div>
 
           <p className="text-xs text-center text-muted-foreground/50 mt-4 px-2">
-            Musicanaz is not affiliated with YouTube or Google. All music data is sourced from YouTube Music via an unofficial API for personal use.
+            BmbSong is not affiliated with YouTube or Google. All music data is sourced from YouTube Music via an unofficial API for personal use.
           </p>
         </section>
 
@@ -1037,7 +1037,7 @@ export default function SettingsPage() {
           <SectionHeader
             icon={<Download className="w-5 h-5 text-primary" />}
             title="Download Server"
-            desc="Downloads work automatically for most songs. If they fail, you can run the included musicanaz-downloader.js on any device — even your phone via Termux — and paste the URL here."
+            desc="Downloads work automatically for most songs. If they fail, you can run the included BmbSong-downloader.js on any device — even your phone via Termux — and paste the URL here."
           />
 
           <div className="rounded-2xl bg-card/40 border border-border/30 p-4 mb-3">
@@ -1083,7 +1083,7 @@ export default function SettingsPage() {
                     const r = await fetch(`${url}/health`, { signal: AbortSignal.timeout(6_000) })
                     const d = await r.json()
                     if (d.ok && d.ytdlp) {
-                      localStorage.setItem("musicanaz_dl_server", url)
+                      localStorage.setItem("BmbSong_dl_server", url)
                       setDlServer(url)
                       setDlServerStatus("ok")
                       setDlServerSaved(true)
@@ -1111,12 +1111,12 @@ export default function SettingsPage() {
             {dlServerStatus === "fail" && (
               <div className="flex items-center gap-2 text-xs text-red-400">
                 <AlertCircle className="w-3.5 h-3.5" />
-                Could not reach the server. Check the URL and make sure musicanaz-downloader.js is running.
+                Could not reach the server. Check the URL and make sure BmbSong-downloader.js is running.
               </div>
             )}
             {dlServer && dlServerStatus === "idle" && (
               <button
-                onClick={() => { localStorage.removeItem("musicanaz_dl_server"); setDlServer(""); setDlServerStatus("idle") }}
+                onClick={() => { localStorage.removeItem("BmbSong_dl_server"); setDlServer(""); setDlServerStatus("idle") }}
                 className="text-xs text-muted-foreground hover:text-destructive underline transition-colors"
               >
                 Remove server
@@ -1129,8 +1129,8 @@ export default function SettingsPage() {
             <p className="text-xs font-semibold text-muted-foreground">How to set up your own download server</p>
             <ol className="text-xs text-muted-foreground/80 space-y-1 list-decimal list-inside">
               <li>Install yt-dlp on any device (PC, VPS, or Termux on Android)</li>
-              <li>Copy <code className="bg-muted/60 rounded px-1">musicanaz-downloader.js</code> to that device</li>
-              <li>Run: <code className="bg-muted/60 rounded px-1">node musicanaz-downloader.js</code></li>
+              <li>Copy <code className="bg-muted/60 rounded px-1">BmbSong-downloader.js</code> to that device</li>
+              <li>Run: <code className="bg-muted/60 rounded px-1">node BmbSong-downloader.js</code></li>
               <li>Expose it publicly via Cloudflare Tunnel or ngrok</li>
               <li>Paste the public URL above and tap Test &amp; Save</li>
             </ol>

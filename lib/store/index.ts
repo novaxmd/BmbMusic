@@ -1,5 +1,5 @@
 /**
- * Musicanaz Unified Storage System  v1
+ * BmbSong Unified Storage System  v1
  * ─────────────────────────────────────────────────────────────────────────────
  * TWO TIERS:
  *
@@ -7,7 +7,7 @@
  *    Keys: cookies, encryption key, auth tokens, private preferences
  *    Namespace prefix: "mz_safe:"
  *
- *  SHARED store — readable by all Musicanaz services
+ *  SHARED store — readable by all BmbSong services
  *    Keys: history, top played, liked songs, artists, playlists, preferences,
  *          listen stats, badges, AI data, party state, fav moments …
  *    Namespace prefix: "mz_shared:"

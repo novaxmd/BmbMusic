@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 const BASE = process.env.BMB_SONG_API_URL || "https://turbo-14uz.onrender.com"
 
-// Apple Music top songs via MUSIVA proxy — country-aware, no Apple API key needed
+// Apple Music top songs via BmbMusic proxy — country-aware, no Apple API key needed
 export async function GET(request: NextRequest) {
   const sp      = request.nextUrl.searchParams
   const country = sp.get("country") || "us"

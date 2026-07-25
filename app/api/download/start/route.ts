@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 
-// Proxy to MUSIVA download API.
+// Proxy to BmbMusic download API.
 // If DOWNLOAD_SERVER_URL is set it takes priority, otherwise uses BMB_SONG_API_URL.
 // This route is only called when the user has NOT configured a personal server
 // (when they have one, handleDownload calls it directly from the client).

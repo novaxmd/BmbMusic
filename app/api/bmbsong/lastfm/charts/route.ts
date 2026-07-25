@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 const BASE = process.env.BMB_SONG_API_URL || "https://turbo-14uz.onrender.com"
 
-// Last.fm top tracks — country-aware when LASTFM_API_KEY is set on MUSIVA server
+// Last.fm top tracks — country-aware when LASTFM_API_KEY is set on BmbMusic server
 export async function GET(request: NextRequest) {
   const sp      = request.nextUrl.searchParams
   const country = sp.get("country") || "ZZ"

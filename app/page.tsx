@@ -447,7 +447,7 @@ function PWAInstallBanner() {
       <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-primary text-primary-foreground shadow-xl shadow-primary/30">
         <ImageWithFallback src="https://raw.githubusercontent.com/wilooper/Asset/main/logo.png" alt="" className="w-9 h-9 rounded-xl flex-shrink-0" />
         <div className="flex-1 min-w-0">
-          <p className="font-semibold text-sm">Install Musicanaz</p>
+          <p className="font-semibold text-sm">Install BmbSong</p>
           <p className="text-xs opacity-80">Add to your home screen</p>
         </div>
         <button onClick={install} className="px-3 py-1.5 rounded-xl bg-primary-foreground text-primary text-xs font-bold flex-shrink-0">Install</button>
@@ -790,7 +790,7 @@ export default function HomePage() {
 
     ;(async () => {
       try {
-        // MUSIVA /song/<videoId> returns full track metadata
+        // BmbMusic /song/<videoId> returns full track metadata
         const res  = await fetch(`/api/bmbsong/song?video_id=${encodeURIComponent(videoId)}`)
         const data = await res.json()
 
@@ -914,7 +914,7 @@ export default function HomePage() {
         const parsed = parseYT(text)
         if (parsed) {
           const ts = parsed.startSeconds
-          const label = ts > 0 ? `Play from ${fmtTime(ts)}` : "Play in Musicanaz"
+          const label = ts > 0 ? `Play from ${fmtTime(ts)}` : "Play in BmbSong"
           setPasteUrl(text)
           setPasteLabel(label)
         } else {
@@ -1234,8 +1234,8 @@ export default function HomePage() {
         {/* ── Header ── */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2.5">
-            <ImageWithFallback src="https://raw.githubusercontent.com/wilooper/Asset/main/logo.png" alt="Musicanaz" className="w-10 h-10 rounded-xl object-contain flex-shrink-0" />
-            <h1 className="text-xl font-bold tracking-tight">Musicanaz</h1>
+            <ImageWithFallback src="https://raw.githubusercontent.com/wilooper/Asset/main/logo.png" alt="BmbSong" className="w-10 h-10 rounded-xl object-contain flex-shrink-0" />
+            <h1 className="text-xl font-bold tracking-tight">BmbSong</h1>
           </div>
           <div className="flex items-center gap-1">
             <Button variant="ghost" size="sm" onClick={() => router.push("/moods")} className="rounded-full px-3 gap-1">
@@ -1327,7 +1327,7 @@ export default function HomePage() {
               {/* Label */}
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-primary leading-tight truncate">
-                  {pasteLabel || "Play in Musicanaz"}
+                  {pasteLabel || "Play in BmbSong"}
                 </p>
                 <p className="text-xs text-muted-foreground truncate">
                   YouTube link detected in clipboard
@@ -1769,7 +1769,7 @@ export default function HomePage() {
                           backdrop-blur-md min-w-[220px] max-w-[90vw]">
             <Loader2 className="w-4 h-4 animate-spin text-primary flex-shrink-0" />
             <div className="min-w-0">
-              <p className="text-sm font-medium truncate">Opening in Musicanaz…</p>
+              <p className="text-sm font-medium truncate">Opening in BmbSong…</p>
               <p className="text-xs text-muted-foreground">Fetching song info</p>
             </div>
           </div>

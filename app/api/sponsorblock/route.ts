@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     const SPONSORBLOCK_BASE = process.env.SPONSORBLOCK_API_URL || "https://sponsor.ajay.app"
     const url = `${SPONSORBLOCK_BASE}/api/skipSegments?videoID=${encodeURIComponent(videoId)}&categories=["poi_highlight"]&actionTypes=["poi"]`
     const res = await fetch(url, {
-      headers: { "User-Agent": "Musicanaz/1.0" },
+      headers: { "User-Agent": "BmbSong/1.0" },
       next: { revalidate: 3600 }, // cache 1hr
     })
 

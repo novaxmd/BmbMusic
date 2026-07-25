@@ -1,13 +1,13 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title:       "About Musicanaz — Free Music PWA",
-  description: "Musicanaz is a free music streaming Progressive Web App (PWA) with synced lyrics, trending charts, radio stations, party mode, and more — powered by YouTube Music.",
-  alternates:  { canonical: "https://musicanaz.vercel.app/about" },
+  title:       "About BmbSong — Free Music PWA",
+  description: "BmbSong is a free music streaming Progressive Web App (PWA) with synced lyrics, trending charts, radio stations, party mode, and more — powered by YouTube Music.",
+  alternates:  { canonical: "https://BmbSong.vercel.app/about" },
   openGraph: {
-    title:       "About Musicanaz",
+    title:       "About BmbSong",
     description: "Free music streaming PWA with synced lyrics and trending charts.",
-    url:         "https://musicanaz.vercel.app/about",
+    url:         "https://BmbSong.vercel.app/about",
   },
 }
 

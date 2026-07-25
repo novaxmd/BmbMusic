@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 
-const BASE = process.env.NEXT_PUBLIC_APP_URL || "https://musicanaz.vercel.app"
+const BASE = process.env.NEXT_PUBLIC_APP_URL || "https://BmbSong.vercel.app"
 
 // ── OG Metadata — makes WhatsApp / Telegram / iMessage show a rich card ──
 export async function generateMetadata({
@@ -10,7 +10,7 @@ export async function generateMetadata({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }): Promise<Metadata> {
   const sp       = await searchParams
-  const title    = String(sp.title    || "Listen on Musicanaz")
+  const title    = String(sp.title    || "Listen on BmbSong")
   const artist   = String(sp.artist   || "")
   const videoId  = String(sp.id       || sp.videoId || "")
   const thumb    = String(sp.thumbnail || "")
@@ -28,7 +28,7 @@ export async function generateMetadata({
     artist ? `by ${artist}` : "",
     Number(t) > 0 ? `▶ Starts at ${fmtSec(Number(t))}` : "",
     Number(e) > 0 ? `⏹ Clip ends at ${fmtSec(Number(e))}` : "",
-    "Stream free on Musicanaz with live synced lyrics.",
+    "Stream free on BmbSong with live synced lyrics.",
   ].filter(Boolean).join("  •  ")
 
   const shareUrl = `${BASE}/song?${new URLSearchParams(sp as Record<string, string>).toString()}`
@@ -41,7 +41,7 @@ export async function generateMetadata({
       title:       displayTitle,
       description: desc,
       url:         shareUrl,
-      siteName:    "Musicanaz",
+      siteName:    "BmbSong",
       images: [
         {
           url:    ogImage,

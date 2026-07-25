@@ -317,7 +317,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       navigator.mediaSession.metadata = new MediaMetadata({
         title:  currentSong.title,
         artist: currentSong.artist,
-        album:  (currentSong as any).album || "Musicanaz",
+        album:  (currentSong as any).album || "BmbSong",
         artwork: currentSong.thumbnail ? [
           { src: `https://images.weserv.nl/?url=${encodeURIComponent(currentSong.thumbnail)}&w=512&h=512&output=jpg`, sizes: "512x512", type: "image/jpeg" },
           { src: `https://images.weserv.nl/?url=${encodeURIComponent(currentSong.thumbnail)}&w=256&h=256&output=jpg`, sizes: "256x256", type: "image/jpeg" },
@@ -803,7 +803,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
       // Persist secret hostId so /party/[id] page can perform host-only ops
       if (typeof window !== "undefined") {
-        try { localStorage.setItem(`musicanaz_party_host_${id}`, secretHostId) } catch {}
+        try { localStorage.setItem(`BmbSong_party_host_${id}`, secretHostId) } catch {}
       }
 
       setPartyId(id)
@@ -825,7 +825,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
         await fetch(`${PARTY_SERVER}/party/${partyId}?hostId=${partyHostId}`, { method: "DELETE" })
       } catch {}
       if (typeof window !== "undefined") {
-        try { localStorage.removeItem(`musicanaz_party_host_${partyId}`) } catch {}
+        try { localStorage.removeItem(`BmbSong_party_host_${partyId}`) } catch {}
       }
     }
     setPartyId(null)

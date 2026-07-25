@@ -1,5 +1,5 @@
 /**
- * Musicanaz storage.ts  v2 — drop-in replacement
+ * BmbSong storage.ts  v2 — drop-in replacement
  * All localStorage access goes through SafeStore / SharedStore.
  * Public API is 100% backward-compatible with v1.
  */
@@ -443,7 +443,7 @@ export function getEarnedBadgeIds(): string[] { return SharedStore.get<string[]>
 // Export / Import all data
 // ═════════════════════════════════════════════════════════════════════════════
 
-interface MusicanazBackup {
+interface BmbSongBackup {
   version: 1
   exportedAt: number
   data: Record<string, unknown>
@@ -457,11 +457,11 @@ export function exportAllData(): void {
       const raw = localStorage.getItem(key)
       if (raw) { try { data[key] = JSON.parse(raw) } catch { data[key] = raw } }
     }
-    const backup: MusicanazBackup = { version: 1, exportedAt: Date.now(), data }
+    const backup: BmbSongBackup = { version: 1, exportedAt: Date.now(), data }
     const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" })
     const url  = URL.createObjectURL(blob)
     const a    = document.createElement("a")
-    a.href = url; a.download = `musicanaz-backup-${new Date().toISOString().slice(0, 10)}.json`; a.click()
+    a.href = url; a.download = `BmbSong-backup-${new Date().toISOString().slice(0, 10)}.json`; a.click()
     URL.revokeObjectURL(url)
   } catch (e) { console.error("Export failed:", e) }
 }
@@ -472,7 +472,7 @@ export function importAllData(
 ): { ok: boolean; error?: string; keysRestored: number } {
   if (typeof window === "undefined") return { ok: false, error: "Not in browser", keysRestored: 0 }
   try {
-    const backup: MusicanazBackup = JSON.parse(json)
+    const backup: BmbSongBackup = JSON.parse(json)
     if (!backup?.data || typeof backup.data !== "object")
       return { ok: false, error: "Invalid backup file format", keysRestored: 0 }
     if (backup.version !== 1)

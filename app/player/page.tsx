@@ -787,7 +787,7 @@ useEffect(() => { if (songId) setLiked(isLiked(songId)) }, [songId])
     const ar   = currentSong?.artist || artist
     if (navigator.share) {
       try {
-        await navigator.share({ title: `${t} – ${ar}`, text: `Listen to ${t} by ${ar} on Musicanaz`, url })
+        await navigator.share({ title: `${t} – ${ar}`, text: `Listen to ${t} by ${ar} on BmbSong`, url })
       } catch {}
     } else {
       copyShareUrl()
@@ -825,7 +825,7 @@ useEffect(() => { if (songId) setLiked(isLiked(songId)) }, [songId])
   // ── Download (two-tier) ──────────────────────────────────────────────────
   // Tier 1: Invidious public API → /api/download/proxy edge route
   //         Free, zero setup. Works for most users.
-  // Tier 2: User-hosted musicanaz-downloader.js yt-dlp server
+  // Tier 2: User-hosted BmbSong-downloader.js yt-dlp server
   //         Configured in Settings. Fallback when Tier 1 fails.
   // window.open('about:blank') MUST be called before any await — this keeps
   // us inside Chrome's user-gesture window so the popup is never blocked.
@@ -836,7 +836,7 @@ useEffect(() => { if (songId) setLiked(isLiked(songId)) }, [songId])
     "https://invidious.nerdvpn.de",
     "https://invidious.privacyredirect.com",
   ]
-  const DL_SERVER_KEY = "musicanaz_dl_server"
+  const DL_SERVER_KEY = "BmbSong_dl_server"
 
   // ── Download: start → poll with progress → fetch blob → save ────────────
   // User stays on the player page the whole time.
@@ -914,10 +914,10 @@ useEffect(() => { if (songId) setLiked(isLiked(songId)) }, [songId])
   // ── handleDownload — 3-tier priority ───────────────────────────────────
   // Tier 1: user's saved server (localStorage) — set in Settings
   // Tier 2: NEXT_PUBLIC_YT_DL_SERVER env var  — set in Vercel for all users
-  // Tier 3: MUSIVA API via Next.js proxy       — always available fallback
+  // Tier 3: BmbMusic API via Next.js proxy       — always available fallback
   //
   // Tiers 1 & 2 call the server DIRECTLY from the browser.
-  // Tier 3 goes through /api/download/* (server-side proxy to MUSIVA).
+  // Tier 3 goes through /api/download/* (server-side proxy to BmbMusic).
   const handleDownload = async () => {
     if (!currentSong || downloadProgress !== null || downloaded) return
     const vid = currentSong.videoId || currentSong.id
@@ -939,7 +939,7 @@ useEffect(() => { if (songId) setLiked(isLiked(songId)) }, [songId])
         const envServer = process.env.NEXT_PUBLIC_YT_DL_SERVER.trim().replace(/\/+$/, "")
         await executeDownload(vid, filename, envServer, true)
 
-      // Tier 3 — MUSIVA API through Next.js proxy (always available)
+      // Tier 3 — BmbMusic API through Next.js proxy (always available)
       } else {
         await executeDownload(vid, filename, "", false)
       }
@@ -1899,7 +1899,7 @@ useEffect(() => { if (songId) setLiked(isLiked(songId)) }, [songId])
                 <div className="flex items-center gap-2 p-2.5 rounded-xl bg-muted/20 border border-border/20">
                   <Link className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
                   <p className="text-xs text-muted-foreground truncate flex-1 font-mono select-all">
-                    {typeof window !== "undefined" ? buildShareUrl().replace(window.location.origin, "musicanaz.vercel.app") : ""}
+                    {typeof window !== "undefined" ? buildShareUrl().replace(window.location.origin, "BmbSong.vercel.app") : ""}
                   </p>
                 </div>
               </div>
@@ -2190,7 +2190,7 @@ useEffect(() => { if (songId) setLiked(isLiked(songId)) }, [songId])
                   <div className="flex items-center gap-2.5 p-3 rounded-xl bg-muted/30 border border-border/20">
                     <Link className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                     <p className="text-xs text-muted-foreground truncate flex-1 font-mono select-all">
-                      {typeof window !== "undefined" ? buildShareUrl().replace(window.location.origin, "musicanaz.vercel.app") : ""}
+                      {typeof window !== "undefined" ? buildShareUrl().replace(window.location.origin, "BmbSong.vercel.app") : ""}
                     </p>
                   </div>
 
