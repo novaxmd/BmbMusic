@@ -1,4 +1,4 @@
-# BmbMusic — Technical Reference for AI Assistants
+# Musicanaz — Technical Reference for AI Assistants
 
 > This document is written for AI coding assistants (Copilot, Cursor, Claude, etc.).  
 > It explains the architecture, data flow, conventions, and key invariants of the codebase so that
@@ -97,7 +97,7 @@ moveInQueue(from: number, to: number): void
 
 ### 3.4 Queue Invariants — CRITICAL
 
-- **Manual play** (`playSong(song, isManual=true)`) → fetches `/api/musiva/upnext?videoId=` and rebuilds the entire queue.
+- **Manual play** (`playSong(song, isManual=true)`) → fetches `/api/bmbsong/upnext?videoId=` and rebuilds the entire queue.
 - **Auto-advance** (`_advanceToSong()`) → does **NOT** re-fetch upnext; traverses existing `queueRef`.
 - `queueRef` and `queueIndexRef` are `useRef` values (not state) to avoid stale closures in callbacks. State `queue` and `queueIndex` are mirrors kept in sync for UI rendering.
 - Never call `setQueue` directly from outside the context; always go through the exposed methods.
@@ -125,8 +125,8 @@ When `remainingTime ≤ crossfadeSecs`, a 200 ms tick loop ramps `ytPlayer.setVo
 | `lyrica_*` | Songs: recently played, liked, cached, downloaded, playlists |
 | `musicana_*` | Preferences, stats, history, reactions, moments, party IDs, badges |
 | `mz_ai_*` | AI toggle flag, signed taste profile |
-| `BmbMusic_uid` | Anonymous device UUID |
-| `BmbMusic_party_host_<id>` | Party host secret (never sent to server) |
+| `musicanaz_uid` | Anonymous device UUID |
+| `musicanaz_party_host_<id>` | Party host secret (never sent to server) |
 
 ### Adding New Persistent Data
 
@@ -193,7 +193,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const q = searchParams.get("q") ?? ""
 
-  const upstream = process.env.MUSIVA_API_URL
+  const upstream = process.env.BMB_SONG_API_URL
   const res = await fetch(`${upstream}/search?q=${encodeURIComponent(q)}`, {
     next: { revalidate: 60 },   // ISR cache where appropriate
   })
@@ -214,7 +214,7 @@ Rules:
 
 | Prefix | Backend env var | Purpose |
 |---|---|---|
-| `/api/musiva/*` | `MUSIVA_API_URL` | All music data and streams |
+| `/api/bmbsong/*` | `BMB_SONG_API_URL` | All music data and streams |
 | `/api/ai/*` | `AI_API_URL` | AI personalization |
 | `/api/groq/transform` | `GROQ_API_URL` | LLM translation / transliteration |
 | `/api/sponsorblock` | `SPONSORBLOCK_API_URL` | Skip-segment data |
@@ -241,7 +241,7 @@ User plays song
 
 ```typescript
 {
-  _sig: string,           // HMAC with APP_SIG = "BmbMusic_2025"
+  _sig: string,           // HMAC with APP_SIG = "musicanaz_2025"
   _version: 1,
   user_id: string,
   songs: Record<songId, {
@@ -293,7 +293,7 @@ lib/party-rtc.ts (PartyRTC class)
 
 ### 8.2 Host vs Guest
 
-- **Host** (`app/party/[id]/host/page.tsx`): Controls playback. `partyHostId` is stored in `localStorage` key `BmbMusic_party_host_<partyId>` and **never** sent over the network or exposed in `AudioContextType`.
+- **Host** (`app/party/[id]/host/page.tsx`): Controls playback. `partyHostId` is stored in `localStorage` key `musicanaz_party_host_<partyId>` and **never** sent over the network or exposed in `AudioContextType`.
 - **Guest** (`app/party/[id]/page.tsx`): Polls external server every 2 s. Can add songs, vote, chat, react.
 
 ### 8.3 Queue Sorting
@@ -335,7 +335,7 @@ export function MyComponent() {
 
 ```typescript
 if (!song.videoId) {
-  const res = await fetch(`/api/musiva/search?q=${title}+${artist}&limit=1`)
+  const res = await fetch(`/api/bmbsong/search?q=${title}+${artist}&limit=1`)
   const { songs } = await res.json()
   song = { ...song, videoId: songs[0]?.videoId }
 }
@@ -436,7 +436,7 @@ All variables are listed in `.env.example`. Rules for new variables:
 | Hard-coding upstream URLs | Read from `process.env.*` |
 | Calling `setQueue()` from outside context | Use `playSong()`, `removeFromQueue()`, `moveInQueue()` |
 | String concatenation for Tailwind classes | Use `cn()` from `lib/utils.ts` |
-| Fetching `/api/musiva/*` from a Server Component | Fetch the upstream `MUSIVA_API_URL` directly in the route handler |
+| Fetching `/api/bmbsong/*` from a Server Component | Fetch the upstream `BMB_SONG_API_URL` directly in the route handler |
 | Re-fetching upnext on queue auto-advance | Only fetch upnext on **manual** `playSong()` calls |
 | Importing Radix primitives directly | Use wrappers in `components/ui/` |
 | `window.localStorage` without SSR guard | Always guard with `typeof window === "undefined"` |

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import pathlib, sys
 if not pathlib.Path("package.json").exists():
-    sys.exit("Run from BmbMusic root")
+    sys.exit("Run from Musicanaz root")
 
 # ── yt-client.ts: send cookies as base64 (no encryption needed) ──────────────
 pathlib.Path("lib/yt-client.ts").write_text('''\
@@ -185,7 +185,7 @@ print("✓ components/yt-cookies-panel.tsx")
 print("""
 Done. Now:
   1. Push the HF Space files (app.py, requirements.txt, Dockerfile) to the ytmlp repo
-  2. Run this in BmbMusic:
+  2. Run this in Musicanaz:
      git add lib/yt-client.ts components/yt-cookies-panel.tsx
      git commit -m "fix: ytmusicapi cookies, base64 transport"
      git push
