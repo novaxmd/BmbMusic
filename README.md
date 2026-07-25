@@ -132,4 +132,4 @@ This project is licensed under the **MIT License**. See [LICENSE](./LICENSE) for
 
 ### Contact
 
-For any inquiries, please contact the project maintainer at [thinkelyorg@gmail.com].
+For any inquiries, please contact the project maintainer at [bmbxmd@gmail.com].
