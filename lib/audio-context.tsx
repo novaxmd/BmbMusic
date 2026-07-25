@@ -10,7 +10,7 @@ import { recordListenSeconds, addToSongHistory, recordBadgeEvent, getPartyUserna
 import { recordYTPlay } from "./yt-client"
 import { localRecordPlay } from "./ai-client"
 
-const LYRICS_API = process.env.NEXT_PUBLIC_LYRICS_API_URL || "https://test-0k.onrender.com"
+const LYRICS_API = process.env.NEXT_PUBLIC_LYRICS_API_URL || "https://bmbapi-web.onrender.com"
 const PARTY_SERVER = process.env.NEXT_PUBLIC_PARTY_SERVER || "https://y-brown-two.vercel.app"
 
 interface AudioContextType {
